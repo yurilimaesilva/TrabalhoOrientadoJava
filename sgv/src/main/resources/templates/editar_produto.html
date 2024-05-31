@@ -29,6 +29,7 @@
                     </div>    
                     <span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" class="alert alert-warning"></span>                        
                 </div>
+                    
                 <div class="row">
                     <div class="col-md-12 mb-3">
                         <label for="preco">Preço:</label>
@@ -36,6 +37,25 @@
                     </div>    
                     <span th:if="${#fields.hasErrors('preco')}" th:errors="*{preco}" class="alert alert-warning"></span>
                 </div>
+                    
+                <div class="row">
+                    <div class="form-group">
+                        <label for="modelo">Modelo:</label>
+                        <input type="text" minlength="1" th:field="*{modelo}" id="modelo" placeholder="Modelo do Produto" class="form-control">
+                    </div>
+                    <span th:if="${#fields.hasErrors('modelo')}" th:errors="*{modelo}" class="alert alert-warning"></span>
+                </div>
+                    
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <label for="quantidade">Quantidade:</label>
+                        <input type="number" min="0" th:field="*{estoque}" id="estoque" placeholder="Estoque" class="form-control">
+                    </div>    
+                    <span th:if="${#fields.hasErrors('estoque')}" th:errors="*{estoque}" class="alert alert-warning"></span>
+                </div>
+                    
+                    
+                    
                 <hr class="mb-4">
                 <input type="submit" value="Salvar" class="btn btn-success btn-block">
                 <a href="/produtos" class="btn btn-secondary btn-block" >Fechar</a>
