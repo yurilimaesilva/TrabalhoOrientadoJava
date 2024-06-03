@@ -54,7 +54,15 @@
                     <span th:if="${#fields.hasErrors('estoque')}" th:errors="*{estoque}" class="alert alert-warning"></span>
                 </div>
                     
-                    
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <label for="tamanho">Tamanho:</label>
+                        <select th:field="*{tamanho}" id="tamanho" class="form-control">
+                            <option th:each="tamanho : ${tamanhos}" th:value="${tamanho.id}" th:text="${tamanho.descricao}"></option>
+                        </select>
+                    </div>
+                    <span th:if="${#fields.hasErrors('tamanho')}" th:errors="*{tamanho}" class="alert alert-warning"></span>
+                </div>
                     
                 <hr class="mb-4">
                 <input type="submit" value="Salvar" class="btn btn-success btn-block">
