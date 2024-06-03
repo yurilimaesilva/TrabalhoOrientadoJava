@@ -1,13 +1,10 @@
 package br.com.sgv.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
-
+import java.util.List;
 /**
  *
  * @author Pablo Rangel <pablo.rangel@gmail.com>
@@ -25,9 +22,13 @@ public class Produto{
     @Size(min = 1, message = "O nome do produto precisa ser válido.")
     private String nome;
     private float preco;
-    @Size(min = 1, max = 50, message = "O modelo do produto precisa ser válido e ter no máximo 50 caracteres.")
+    @Size(min = 1, max = 50, message = "Máximo 50 caracteres.")
     private String modelo;
     private int estoque;
+
+    @ManyToOne
+    @JoinColumn(name = "tamanho_id")
+    private Tamanho tamanho;
     
     @Override
     public String toString() {
