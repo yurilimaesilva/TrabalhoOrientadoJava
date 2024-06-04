@@ -26,6 +26,7 @@
                         <th>ID</th>
                         <th>Nome</th>
                         <th>Modelo</th>
+                        <th>Tamanho</th>
                         <th>Preço</th>  
                         <th>Estoque</th>
                         <th>Alterar</th>
@@ -37,6 +38,7 @@
                         <td th:text="${p.id}"></td>
                         <td th:text="${p.nome}"></td>
                         <td th:text="${p.modelo}"></td>
+                        <td th:text="${p.tamanho.descricao}"></td>
                         <td th:text="${p.preco}"></td>
                         <td th:text="${p.estoque}"></td>
                         <td><a th:href="@{/produtos/{id}(id=${p.id})}" class="btn btn-warning"><i class="bi bi-pencil"></i></a></td>
@@ -81,4 +83,3 @@
         </script>
     </body>
 </html>
-
