@@ -40,7 +40,7 @@
                                     </thead>
                                     <tbody>
                                         <tr th:each="i : ${venda.listaItens}" th:field="*{listaItens}">
-                                            <td th:text="${i.id}"></td>
+                                            <td th:text="${i.produto.id}"></td>
                                             <td th:text="${i.produto}"></td>
                                             <td th:text="${i.quantidade}"></td>
                                             <td><a th:href="@{/vendas/itens/{id}(id=${i.id})}" class="btn btn-danger"><i class="bi bi-trash"></i></a></td>
@@ -58,6 +58,9 @@
                     <form th:action="@{/vendas/itens}" th:object="${item}" method="post">
                         <h3> Adicionar novos produtos</h3>
                         <hr>
+                        <div th:if="${erro}" class="alert alert-danger" role="alert">
+                            <p th:text="${erro}"></p>
+                        </div>
                         <div class="row" >
                             <div class="col">
                                 <label for="quantidade">Produtos</label>
