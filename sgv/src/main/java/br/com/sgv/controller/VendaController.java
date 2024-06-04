@@ -1,5 +1,7 @@
 package br.com.sgv.controller;
 
+import java.util.stream.Collectors;
+import br.com.sgv.model.Produto;
 import br.com.sgv.model.Item;
 import br.com.sgv.model.Venda;
 import br.com.sgv.repository.ProdutoRepository;
@@ -63,7 +65,9 @@ public class VendaController {
             return "editar_venda";
         }
         this.venda.setDataVenda(venda.getDataVenda());
+        this.venda.ajustarEstoque();
         vendaRepository.save(this.venda);
+        produtoRepository.saveAll(this.venda.getListaItens().stream().map(Item::getProduto).collect(Collectors.toList()));
         return "redirect:/vendas";
     }
     
@@ -72,11 +76,15 @@ public class VendaController {
         if (result.hasErrors()) {
             return "editar_venda";
         }
-        if (item.getProduto() != null){
+        Produto produto = item.getProduto();
+        if (produto != null && produto.getEstoque() >= item.getQuantidade()) {
             venda.adicionarItem(item);
             item.setVenda(venda);
             vendaRepository.save(venda);
+        } else {
+            model.addAttribute("erro", "Quantidade indisponível.");
         }
+
         String url = "redirect:/vendas/"+venda.getId();
         return url;
     }
