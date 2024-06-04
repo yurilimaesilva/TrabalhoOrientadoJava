@@ -72,4 +72,13 @@ public class Venda implements Serializable{
         return soma;
     }
     
+    public void ajustarEstoque() {
+        for (Item item : listaItens) {
+            Produto produto = item.getProduto();
+            int novaQuantidade = produto.getEstoque() - item.getQuantidade();
+            produto.setEstoque(novaQuantidade);
+        }
+    }
+
+    
 }
